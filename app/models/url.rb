@@ -7,7 +7,4 @@ class Url < ApplicationRecord
   validates :original_url, format: {with: VALID_URL_REGEX}
   validates :shortened_url, presence: true
 
-  def add_error_sample
-    if
-  end
 end
