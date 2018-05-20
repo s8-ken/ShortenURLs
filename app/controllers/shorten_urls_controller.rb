@@ -14,10 +14,9 @@ class ShortenUrlsController < ApplicationController
     @url.shortened_url = generate_shortened_url
     if @url.save
       flash[:info] = "短縮後のURLは#{@url.shortened_url}です！"
-      redirect_to shorten_urls_new_path
+      redirect_to shorten_urls_path
     elsif
-      flash.now[:alert] = "しっぱい"
-      render :action => :new
+      render 'new'
     end  
   end
 
@@ -35,7 +34,7 @@ class ShortenUrlsController < ApplicationController
   end
   private
   def generate_shortened_url_from_id(id)
-    "http://" + request.host_with_port+ '/shorten_urls/jump/' +  id
+    "http://" + request.host_with_port + '/' + id
   end
   def generate_shortened_url
     generate_shortened_url_from_id(('a'..'z').to_a.shuffle[0..7].join)
