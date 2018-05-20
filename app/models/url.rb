@@ -1,5 +1,4 @@
 class Url < ApplicationRecord
-  validate :add_error_sample
   
   before_save {self.original_url = original_url.downcase}
   validates :original_url, presence: true
