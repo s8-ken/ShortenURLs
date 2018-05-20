@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   #  root 'static_pages#home'
-  root 'shorten_urls/new'
+  root 'shorten_urls#new'
   get 'shorten_urls/new'
   get 'shorten_urls/show'
   get 'shorten_urls/jump'
