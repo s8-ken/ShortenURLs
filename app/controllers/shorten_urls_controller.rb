@@ -11,7 +11,14 @@ class ShortenUrlsController < ApplicationController
 
   def create
     @url = Url.new(params.require(:url).permit(:original_url))
-    @url.shortened_url = generate_shortened_url
+
+    while
+      @url.shortened_url = generate_shortened_url
+      if 
+        !Url.exists?(:shortened_url => @url.shortened_url)        
+        break
+      end
+    end
     if @url.save
       flash[:info] = "短縮後のURLは#{@url.shortened_url}です！"
       redirect_to shorten_urls_path
